@@ -8,7 +8,7 @@ intents.members = True
 client = commands.Bot(command_prefix="$", case_insensitive = True ,intents=intents)
 slash = SlashCommand(client, sync_commands=True)
 
-guilds_id = [436955269700780042]
+guilds_id = ['DISCORD_ID']
 
 @client.event
 async def on_ready():
@@ -17,7 +17,7 @@ async def on_ready():
     print("🚀Bot is ready!")
 
     # react emoji
-    Channel = client.get_channel(958032546044719104)
+    Channel = client.get_channel('CHANNEL_ID')
     Text = "Clique nos emojis abaixo para pegar seus respectivos cargos (😁 = FokiMember)"
     Moji = await Channel.send(Text)
     await Moji.add_reaction('😁')
@@ -25,12 +25,12 @@ async def on_ready():
 # welcome member
 @client.event
 async def on_member_join(member):
-   await client.get_channel(839676654112342016).send(f" Olá {member.mention}😁, bem-vindo ao fokifoki!")
+   await client.get_channel('CHANNEL_ID').send(f" Olá {member.mention}😁, bem-vindo ao fokifoki!")
 
 # goodbye member
 @client.event
 async def on_member_remove(member):
-   await client.get_channel(839676654112342016).send(f"{member.mention} saiu do servidor😭")
+   await client.get_channel('CHANNEL_ID').send(f"{member.mention} saiu do servidor😭")
 
 
 # ping command
@@ -71,11 +71,11 @@ async def _kick(ctx: SlashContext,
 @client.event
 # emoji reaction
 async def on_reaction_add(reaction, user):
-    Channel = client.get_channel(958032546044719104)
+    Channel = client.get_channel('CHANNEL_ID')
     if reaction.message.channel.id != Channel.id:
         return
     if reaction.emoji == "😁":
-      Role = discord.utils.get(user.guild.roles, name="FokiMember")
+      Role = discord.utils.get(user.guild.roles, name="ROLE_ID")
       await user.add_roles(Role)
 
 client.run("MTAzMzYyODMxODkyODQ5MDU2Ng.G7l_V4.tt9reAI0FuP6L-2XrruPTiTiFg3ylLY_0oB6S8")
